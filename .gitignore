@@ -1,0 +1,18 @@
+node_modules/
+.next/
+.next-*/
+out/
+.DS_Store
+*.tsbuildinfo
+
+# local only
+.claude/
+.design-backup/
+
+# CV sources and drafts — not part of the site
+main.tex
+main.template.tex
+cv_preview.pdf
+
+# originals and files kept off the site (cv.pdf, full-size images)
+_offline/

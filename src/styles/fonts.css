@@ -1,0 +1,5 @@
+/* One voice. Inter for everything — titles, body, navigation, labels — with
+   the hierarchy carried by size, weight and tone rather than a second face.
+   JetBrains Mono only where figures have to line up. Noto Sans KR for hangul
+   and nothing else. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
