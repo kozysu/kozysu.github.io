@@ -12,10 +12,18 @@ const HOST = ["hanyang", "ac", "kr"].join(".");
  * browser after mount, so the link still works in one click while the static
  * HTML never carries the address in a scrapeable form.
  *
+ * Given children, those are shown instead and the address appears nowhere.
+ *
  * This defeats regex scrapers reading the served HTML — not a headless browser
  * that runs the page's JavaScript.
  */
-export function Email({ className }: { className?: string }) {
+export function Email({
+    className,
+    children,
+}: {
+    className?: string;
+    children?: React.ReactNode;
+}) {
     const [href, setHref] = useState<string | undefined>(undefined);
 
     useEffect(() => {
@@ -24,7 +32,7 @@ export function Email({ className }: { className?: string }) {
 
     return (
         <a className={className} href={href} rel="nofollow">
-            {USER} [at] {HOST}
+            {children ?? `${USER} [at] ${HOST}`}
         </a>
     );
 }

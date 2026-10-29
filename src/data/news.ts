@@ -6,6 +6,10 @@ export interface NewsItem {
 
 export const newsData: NewsItem[] = [
     {
+        date: "Oct 2026",
+        content: "Served as TA for 'Agentic AI' workshop at Dongsan High School 🧑‍🏫",
+    },
+    {
         date: "Sep 2026",
         content: "Our paper on masked pose embedding has been accepted to Machine Vision and Applications 🎉",
     },

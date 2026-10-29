@@ -3,34 +3,23 @@ import portrait from "../assets/pic.jpg";
 import { Email } from "../components/Email";
 import { PubCarousel } from "../components/PubCarousel";
 import { NewsList } from "../components/NewsList";
-// import { ResearchLens } from "../components/ResearchLens";
+import { profiles } from "../data/profiles";
 
 export default function HomePage() {
     return (
         <div className="home">
+            {/* a bento of cards: who, with the portrait as its own card beside
+                it at the same height; the research under both */}
             <section className="home-hero">
-                {/* the portrait, with the address under it */}
-                <div className="hero-profile">
-                    <div className="hero-photo">
-                        <Image
-                            src={portrait}
-                            alt="Jisu Ko"
-                            priority
-                            sizes="(max-width: 760px) 120px, 240px"
-                        />
+                {/* who, then what: the greeting carries the name and the place */}
+                <div className="hero-text card">
+                    <span className="card-label">About</span>
+
+                    <div className="hero-head">
+                        <h1>
+                            Hi, I&apos;m Jisu Ko <span className="ko">고지수</span>
+                        </h1>
                     </div>
-
-                    <p className="hero-contact">
-                        <Email />
-                    </p>
-                </div>
-
-                {/* who, then what: the greeting carries the name and the place,
-                    and the research follows in the same column */}
-                <div className="hero-text">
-                    <h1>
-                        Hi, I&apos;m Jisu Ko <span className="ko">고지수</span>
-                    </h1>
 
                     <p className="standing">
                         I&apos;m a third-year Ph.D. student in Applied AI at Hanyang University,
@@ -49,11 +38,42 @@ export default function HomePage() {
                         .
                     </p>
 
+                    {/* the ways to reach and look up, as plain words in the
+                        header's manner: the address, then the outside profiles
+                        marked as leaving */}
+                    <div className="hero-contact">
+                        <Email>Email</Email>
+                        {profiles.map(({ label, href }) => (
+                            <a key={href} href={href} target="_blank" rel="noopener noreferrer">
+                                {label}
+                                <span className="out" aria-hidden="true">
+                                    ↗
+                                </span>
+                            </a>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="hero-photo card">
+                    <Image
+                        src={portrait}
+                        alt="Jisu Ko"
+                        priority
+                        sizes="(max-width: 760px) 100vw, 380px"
+                    />
+                </div>
+
+                <div className="hero-focus card">
+                    <span className="card-label">Research</span>
+
                     <div className="lede">
                         <p>
-                            My research focuses on <b>Reflective Human–AI Interaction</b>—designing
-                            AI systems that help people reflect on their own thinking, explore
-                            different perspectives, and make more intentional decisions.
+                            My research focuses on <b>Reflective <span className="nobr">Human–AI</span> </b>
+                            <span className="nobr">
+                                <b>Interaction</b>—designing
+                            </span>{" "}
+                            AI systems that help people reflect on their own thinking, 
+                            explore different perspectives, and make more intentional decisions.
                         </p>
                         <p>
                             I design and evaluate interactive AI systems that make reasoning,
@@ -63,24 +83,19 @@ export default function HomePage() {
                         </p>
                     </div>
                 </div>
-            </section>
 
-            <section className="home-sec">
-                <NewsList />
             </section>
-
-            {/* the four principles, set directly above the papers that are
-                their cases — hidden for now; uncomment to bring back
-            <section className="home-sec home-lens">
-                <ResearchLens />
-            </section>
-            */}
 
             {/* Every paper, as cards that step a page at a time. The three
                 selected ones used to sit here alone (SystemsBand.tsx, now
                 unmounted), and the keyword map before that (KeywordField.tsx). */}
-            <section className="home-sec home-work">
+            <section className="home-sec home-work card">
                 <PubCarousel />
+            </section>
+
+            {/* news last: a line or two of what is new, after the work */}
+            <section className="home-sec card">
+                <NewsList />
             </section>
         </div>
     );

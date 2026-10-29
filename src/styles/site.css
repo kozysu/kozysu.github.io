@@ -1666,11 +1666,6 @@
   letter-spacing: -0.01em;
 }
 
-.pub-row.kr .authors {
-  font-family: "Noto Sans KR", var(--font-sans), sans-serif;
-  letter-spacing: -0.01em;
-}
-
 /* a proceedings citation, not a venue sentence: mono, with the year led out
    in front of it the way a reference list does */
 .pub-row.kr .journal {
@@ -1751,16 +1746,6 @@
   border-radius: 2px;
   padding: 2px 8px;
   white-space: nowrap;
-}
-
-/* what the venue is worth, beside the pill that names it. Kept to one mono
-   line at the pill's own size: it is provenance, not a headline. */
-.venue-metrics {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.02em;
-  font-variant-numeric: tabular-nums;
-  color: var(--ink-3);
 }
 
 /* not a venue yet — stays neutral so real venues keep the accent */
@@ -3050,7 +3035,11 @@ h4,
   }
 }
 
-/* ── Research lens (home) ───────────────────────────────── */
+/* ── Research lens (publications) ───────────────────────── */
+
+.pub-lens {
+  margin-top: 72px;
+}
 
 /* four design principles in a row, each a card of thin rules: number and
    label, a small line drawing, the principle in a line, and the papers that
@@ -3274,5 +3263,232 @@ h4,
 
   .lens-fig {
     max-width: 120px;
+  }
+}
+
+/* ── Research lens: hover ───────────────────────────────── */
+
+/* Pointing at a principle retraces its accent strokes, the way a pencil goes
+   over a line again, and each figure makes its own small move: the hidden
+   dots come forward, the other views come into colour, the old ordering
+   fades, the arc of choice rocks. The other three figures step back. Nothing
+   moves until asked. */
+.lens-fig {
+  transition: opacity 0.35s ease;
+}
+
+.lens-fig .draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.lens-fig .dot.faint,
+.lens-fig .alt,
+.lens-fig .before {
+  transition: fill 0.4s ease, stroke 0.4s ease, opacity 0.4s ease;
+}
+
+.lens-fig .sway {
+  transform-box: fill-box;
+  transform-origin: 0% 50%;
+  transition: transform 0.6s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+@keyframes lens-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (hover: hover) {
+  .lens:hover .lens-card:not(:hover) .lens-fig {
+    opacity: 0.45;
+  }
+}
+
+.lens-card:is(:hover, :focus-within) .lens-fig .draw {
+  animation: lens-draw 0.9s cubic-bezier(0.45, 0, 0.2, 1) both;
+}
+
+.lens-card:is(:hover, :focus-within) .lens-fig .dot.faint {
+  fill: var(--ink-3);
+}
+
+.lens-card:is(:hover, :focus-within) .lens-fig .ln.alt,
+.lens-card:is(:hover, :focus-within) .lens-fig .ring.alt {
+  stroke: var(--accent-soft);
+}
+
+.lens-card:is(:hover, :focus-within) .lens-fig .before {
+  opacity: 0.35;
+}
+
+.lens-card:is(:hover, :focus-within) .lens-fig .sway {
+  transform: rotate(-8deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lens-card:is(:hover, :focus-within) .lens-fig .draw {
+    animation: none;
+  }
+
+  .lens-fig .sway {
+    transition: none;
+  }
+}
+
+/* ── Hero: arrival and the small lens ───────────────────── */
+
+/* the name and the lines under it arrive one after another, once, on load */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-photo,
+.hero-head,
+.home-hero .standing,
+.home-hero .lede p,
+.hero-contact {
+  animation: hero-rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero-photo { animation-delay: 0s; }
+.hero-head { animation-delay: 0.08s; }
+.home-hero .standing { animation-delay: 0.2s; }
+.home-hero .lede p:nth-child(1) { animation-delay: 0.32s; }
+.home-hero .lede p:nth-child(2) { animation-delay: 0.42s; }
+.hero-contact { animation-delay: 0.5s; }
+
+/* the greeting on the left, the lens drawing level with it on the right */
+.hero-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.hero-lens {
+  flex: none;
+  width: 168px;
+  height: auto;
+  margin-bottom: -4px;
+  overflow: visible;
+}
+
+.hero-lens .hl-dot {
+  fill: var(--rule);
+  transition: fill 0.3s ease;
+}
+
+.hero-lens .hl-dot.on {
+  fill: var(--ink-2);
+}
+
+.hero-lens .hl-links {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 0.8;
+  stroke-linecap: round;
+}
+
+.hero-lens .hl-ring {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.05;
+}
+
+/* no pointer to follow on a phone, and no room beside the name */
+@media (max-width: 760px) {
+  .hero-lens {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo,
+  .hero-head,
+  .home-hero .standing,
+  .home-hero .lede p,
+  .hero-contact {
+    animation: none;
+  }
+}
+
+/* ── Demo figures ───────────────────────────────────────── */
+
+/* a paper with a demo keeps its still until hovered or clicked; the demo then
+   takes the box, and the still is hidden once the demo has loaded so the two
+   never show together. A small play mark says there is one to see. */
+.has-demo {
+  cursor: pointer;
+}
+
+.has-demo img.demo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  padding: inherit;
+  box-sizing: border-box;
+  object-fit: contain;
+  visibility: hidden;
+}
+
+/* the still stays in place, holding the box's size, but out of sight */
+.has-demo .still {
+  display: contents;
+}
+
+.has-demo.ready .still {
+  visibility: hidden;
+}
+
+.has-demo.ready img.demo {
+  visibility: visible;
+}
+
+.demo-mark {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: 0 0 0 1px var(--rule);
+  transition: opacity 0.2s ease;
+}
+
+.demo-mark::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  border-style: solid;
+  border-width: 5px 0 5px 8px;
+  border-color: transparent transparent transparent var(--accent);
+}
+
+.has-demo.playing .demo-mark {
+  opacity: 0;
+}
+
+/* with a mouse the demo finds itself the moment the pointer passes over, so
+   the mark is only kept where a tap is the one way in */
+@media (hover: hover) and (pointer: fine) {
+  .demo-mark {
+    display: none;
   }
 }

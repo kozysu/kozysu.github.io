@@ -4,6 +4,8 @@ import { Github, GraduationCap, Linkedin } from "lucide-react";
 export const profiles = [
     {
         label: "Google Scholar",
+        // what the header shows; the full name stays the tooltip
+        short: "Scholar",
         href: "https://scholar.google.com/citations?user=JmVMwvoAAAAJ&hl=en",
         Icon: GraduationCap,
     },

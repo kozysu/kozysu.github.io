@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PubList } from "../../components/PubList";
+import { ResearchLens } from "../../components/ResearchLens";
 import { publications } from "../../data/publications";
 import { Publication } from "../../types/publication";
 
@@ -50,7 +51,7 @@ export default function PublicationPage() {
     return (
         <>
             <div className="page-head">
-                <h1 className="display">Publications</h1>
+                {/* <h1 className="display">Publications</h1> */}
 
                 {/* the cuts of the list, on the rule the head closes with —
                     they do not need a row of their own */}

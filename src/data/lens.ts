@@ -1,5 +1,5 @@
 /**
- * Home-page research lens: four design principles the work explores. They are
+ * Research lens (end of the publications page): four design principles the work explores. They are
  * a way of looking at the papers, not a process each one implements end to
  * end, so they carry no order and each lists only the papers that touch it.
  * Edit freely.

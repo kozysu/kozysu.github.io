@@ -2,7 +2,9 @@ import Link from "next/link";
 import { lensIntro, lensPrinciples, LensPrinciple } from "../data/lens";
 
 /** The drawing itself, on a 120×64 grid. Grey for the material, the accent
- *  for what the principle acts on. */
+ *  for what the principle acts on. On hover the `draw` strokes are traced
+ *  again, and `alt`, `before` and `sway` carry each figure's own small change
+ *  (see the lens rules in site.css). */
 function Drawing({ kind }: { kind: LensPrinciple["figure"] }) {
     switch (kind) {
         case "reveal":
@@ -15,8 +17,8 @@ function Drawing({ kind }: { kind: LensPrinciple["figure"] }) {
                     ].map(([x, y]) => (
                         <circle key={`${x}-${y}`} cx={x} cy={y} r="2" className="dot faint" />
                     ))}
-                    <circle cx="60" cy="32" r="22" className="ln ac" />
-                    <path d="M51 25 L67 23 L64 40 L51 25" className="ln ac thin" />
+                    <circle cx="60" cy="32" r="22" className="ln ac draw" pathLength={1} />
+                    <path d="M51 25 L67 23 L64 40 L51 25" className="ln ac thin draw" pathLength={1} />
                     <circle cx="51" cy="25" r="2.4" className="dot" />
                     <circle cx="67" cy="23" r="2.4" className="dot" />
                     <circle cx="64" cy="40" r="2.4" className="dot" />
@@ -27,22 +29,23 @@ function Drawing({ kind }: { kind: LensPrinciple["figure"] }) {
             return (
                 <>
                     <circle cx="16" cy="32" r="3.5" className="dot" />
-                    <path d="M19 32 C50 32 60 12 100 12" className="ln" />
-                    <path d="M19 32 H100" className="ln ac" />
-                    <path d="M19 32 C50 32 60 52 100 52" className="ln" />
-                    <circle cx="103" cy="12" r="3" className="ring" />
+                    <path d="M19 32 C50 32 60 12 100 12" className="ln alt" />
+                    <path d="M19 32 H100" className="ln ac draw" pathLength={1} />
+                    <path d="M19 32 C50 32 60 52 100 52" className="ln alt" />
+                    <circle cx="103" cy="12" r="3" className="ring alt" />
                     <circle cx="103" cy="32" r="3" className="ring ac" />
-                    <circle cx="103" cy="52" r="3" className="ring" />
+                    <circle cx="103" cy="52" r="3" className="ring alt" />
                 </>
             );
         case "revise":
             // before → after: the same three items, reweighted
             return (
                 <>
-                    <path d="M10 18 H30 M10 32 H44 M10 46 H22" className="ln dash" />
+                    <path d="M10 18 H30 M10 32 H44 M10 46 H22" className="ln dash before" />
                     <path d="M54 32 H66 M62 28 L66 32 L62 36" className="ln" />
-                    <path d="M78 18 H112" className="ln ac thick" />
-                    <path d="M78 32 H98 M78 46 H90" className="ln thick" />
+                    <path d="M78 18 H112" className="ln ac thick draw" pathLength={1} />
+                    <path d="M78 32 H98" className="ln thick draw" pathLength={1} />
+                    <path d="M78 46 H90" className="ln thick draw" pathLength={1} />
                 </>
             );
         case "agency":
@@ -52,12 +55,14 @@ function Drawing({ kind }: { kind: LensPrinciple["figure"] }) {
             return (
                 <>
                     <path d="M6 32 H38" className="ln" />
-                    <path d="M46 29 C62 22 76 12 109 12" className="ln ac" />
+                    <path d="M46 29 C62 22 76 12 109 12" className="ln ac draw" pathLength={1} />
                     <path d="M104.5 8.5 L109.5 12 L104.5 15.5" className="ln ac" />
                     <path d="M47 32 H108" className="ln dash" />
                     <path d="M46 35 C62 42 76 52 108 52" className="ln dash" />
-                    <path d="M92 18 C99 26 99 38 92 46" className="ln" />
-                    <path d="M92.7 21.4 L92 18 L95.3 19.1 M95.3 44.9 L92 46 L92.7 42.6" className="ln" />
+                    <g className="sway">
+                        <path d="M92 18 C99 26 99 38 92 46" className="ln" />
+                        <path d="M92.7 21.4 L92 18 L95.3 19.1 M95.3 44.9 L92 46 L92.7 42.6" className="ln" />
+                    </g>
                     <circle cx="42" cy="32" r="4" className="dot ac" />
                 </>
             );

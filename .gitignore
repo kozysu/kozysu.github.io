@@ -16,3 +16,6 @@ cv_preview.pdf
 
 # originals and files kept off the site (cv.pdf, full-size images)
 _offline/
+
+# Figma Make's guidelines template — never filled in, not part of the site
+guidelines/

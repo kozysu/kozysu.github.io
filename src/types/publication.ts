@@ -13,11 +13,10 @@ export interface Publication {
     pages?: string;
     /** Short label shown in the venue pill; derived from `venue` when omitted. */
     venueShort?: string;
-    /** What the venue is worth, joined with a middot: index and quartile,
-     *  then the percentile where it is worth saying, then the impact factor.
-     *  Journals only — see the note at the head of `publications.ts` for why,
-     *  and for where each figure came from. */
-    metrics?: string[];
+    /** Journal or conference. A journal's name is set in italic, the way a
+     *  citation sets it. Left off for papers still under review and for
+     *  domestic proceedings. */
+    kind?: "journal" | "conference";
     /** The system this paper reports, when it has a name. Ties the paper to a
      *  stage on the home-page scale. */
     project?: string;
@@ -29,6 +28,8 @@ export interface Publication {
     projectUrl?: string;
     pdfUrl?: string;
     imageUrl?: any;
+    /** An animated demo, played over `imageUrl` on hover or click. */
+    demoUrl?: any;
     isSelected?: boolean;
 }
 

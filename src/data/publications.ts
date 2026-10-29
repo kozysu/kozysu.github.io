@@ -4,19 +4,20 @@ import img24Colorbo from "../assets/24_colorbo.webp";
 import img24CompEmo from "../assets/24_compemo.png";
 import img24MorningEmo from "../assets/24_mwi_line.webp";
 import img25Prioritization from "../assets/25_prioritization.png";
-import img26Criticmate from "../assets/26_criticmate_line.webp";
+import img26Criticmate from "../assets/26_criticmate.webp";
+import demo26Criticmate from "../assets/26_criticmate_demo.webp";
 import img26PosTalk from "../assets/26_postalk.webp";
 import img26PRISM from "../assets/26_prism.png";
 import img26MPE from "../assets/26_mpe_line.webp";
+import demo26MPE from "../assets/26_pose_demo.webp";
 
 /**
- * Venue metrics, read off each venue's own page in September 2026. Impact
- * factors move once a year with the JCR release — check these against the
- * source before the CV goes anywhere that matters.
+ * Venue metrics, read off each venue's own page in September 2026. Not shown
+ * on the site — each venue goes by its full name — but kept here for the CV.
+ * Impact factors move once a year with the JCR release — check these against
+ * the source before the CV goes anywhere that matters.
  *
- * Only the journals carry them: a conference is not measured on the same
- * scale, and half a line of CORE ranks beside half a line of impact factors
- * reads as though they were. CHI's figures, if they are ever wanted:
+ * CHI's figures, if they are ever wanted:
  * CORE A* (ICORE 2026), Google Scholar h5-index 129, CHI 2026 accepted
  * 1,702 of 6,725 (25.3%).
  *
@@ -32,7 +33,7 @@ import img26MPE from "../assets/26_mpe_line.webp";
 export const publications: Publication[] = [
     {
         title: "\"On the Wall or in the Talk?\": A Cross-Channel Takeaway Loop for Academic Poster Authoring",
-        authors: ["Jisu Ko", "Seyoung Park", "Minsam Ko"],
+        authors: ["Jisu Ko", "Seyoung Park", "Minsam Ko†"],
         venue: "Under review",
         venueShort: "Under review",
         project: "Postalk",
@@ -45,7 +46,7 @@ export const publications: Publication[] = [
     },
     {
         title: "Taking Sides with Yourself: How Opposing AI Perspectives Shape Attention in Career Decision-Making",
-        authors: ["Gijun Jang*","Jisu Ko*", "Jinyoung Choi*", "Minsam Ko"],
+        authors: ["Gijun Jang*","Jisu Ko*", "Jinyoung Choi*", "Minsam Ko†"],
         venue: "Under review",
         venueShort: "Under review",
         project: "PRISM",
@@ -58,46 +59,50 @@ export const publications: Publication[] = [
     },
     {
         title: "Masked Pose Embedding for View and Occlusion Invariance in 2D Pose Analysis",
-        authors: ["Jisu Ko", "Jeonguk Seo", "Minsam Ko"],
+        authors: ["Jisu Ko", "Jeonguk Seo†", "Minsam Ko†"],
         venue: "Machine Vision and Applications 2026",
         venueShort: "MVA",
-        metrics: ["SCIE Q3", "IF 2.3"],
+        kind: "journal",
         keywords: ["Pose & Motion Analysis"],
         year: 2026,
         projectUrl: "https://link.springer.com/article/10.1007/s00138-026-01909-7",
         pdfUrl: "/papers/26_pose.pdf",
         imageUrl: img26MPE,
+        demoUrl: demo26MPE,
         isSelected: false
     },
     {
         title: "다중 페르소나 상호작용을 활용한 진로 의사결정 지원 시스템",
         titleEn: "Supporting Reflective Career Decision-Making through Multi-Persona Interaction",
-        authors: ["최진영", "고지수", "고민삼"],
-        venue: "한국정보과학회 학술발표논문집 (한국컴퓨터종합학술대회)",
+        authors: ["Jinyoung Choi", "Jisu Ko", "Minsam Ko†"],
+        venue: "Korea Computer Congress",
         venueShort: "KCC",
         domestic: true,
+        pages: "34–36",
         keywords: ["Human-AI Interaction", "Judgment & Decision Support"],
         year: 2026,
         isSelected: false
     },
     {
         title: "Criticmate: Stagewise Human–AI Co-Critique in Single-Screen UI Evaluation",
-        authors: ["Jisu Ko", "Jinyoung Choi", "Cielo Morales", "Dajung Kim", "Minsam Ko"],
+        authors: ["Jisu Ko", "Jinyoung Choi", "Cielo Morales", "Dajung Kim", "Minsam Ko†"],
         venue: "ACM CHI Conference on Human Factors in Computing Systems 2026",
         venueShort: "CHI",
+        kind: "conference",
         project: "Criticmate",
         keywords: ["Human-AI Interaction", "Design Critique"],
         year: 2026,
         projectUrl: "https://doi.org/10.1145/3772318.3790929",
         pdfUrl: "/papers/26_criticmate.pdf",
         imageUrl: img26Criticmate,
+        demoUrl: demo26Criticmate,
         isSelected: true
     },
     {
         title: "LLM 에이전트를 활용한 프로젝트 요구사항 우선순위화",
         titleEn: "Project Requirement Prioritization Using LLM Agents",
-        authors: ["최진영", "고지수", "고민삼"],
-        venue: "한국정보과학회 학술발표논문집",
+        authors: ["Jinyoung Choi", "Jisu Ko", "Minsam Ko†"],
+        venue: "Korea Software Congress",
         venueShort: "KSC",
         domestic: true,
         pages: "630–632",
@@ -108,10 +113,10 @@ export const publications: Publication[] = [
     },
     {
         title: "Understanding Morning Emotions by Analyzing Daily Wake-Up Alarm Usage: Longitudinal Observational Study",
-        authors: ["Kyue Taek Oh*", "Jisu Ko*", "Nayoung Jin", "Sangbin Han", "Chan Yul Yoon", "Jaemyung Shin", "Minsam Ko"],
+        authors: ["Kyue Taek Oh*", "Jisu Ko*", "Nayoung Jin", "Sangbin Han", "Chan Yul Yoon", "Jaemyung Shin", "Minsam Ko†"],
         venue: "JMIR Human Factors 2024",
         venueShort: "JMIR HF",
-        metrics: ["ESCI Q1", "77th pct", "IF 3.9"],
+        kind: "journal",
         keywords: ["Behavioral Sensing", "Digital Wellness"],
         year: 2024,
         projectUrl: "https://humanfactors.jmir.org/2024/1/e50835",
@@ -122,8 +127,8 @@ export const publications: Publication[] = [
     {
         title: "비전 언어 모델을 활용한 복합 얼굴 표정 인식",
         titleEn: "Compound Facial Emotion Recognition Using Vision Language Models",
-        authors: ["신요섭", "고지수", "고민삼"],
-        venue: "한국정보과학회 학술발표논문집",
+        authors: ["Joseph Shin", "Jisu Ko", "Minsam Ko†"],
+        venue: "Korea Software Congress",
         venueShort: "KSC",
         domestic: true,
         pages: "657–659",
@@ -135,8 +140,8 @@ export const publications: Publication[] = [
     {
         title: "마스크 기반 자세 임베딩을 통한 시점 및 가려짐 불변적 자세 분석",
         titleEn: "Pose Analysis with View and Occlusion Invariance via Masked Pose Embedding",
-        authors: ["고지수", "고민삼"],
-        venue: "한국정보과학회 학술발표논문집",
+        authors: ["Jisu Ko", "Minsam Ko†"],
+        venue: "Korea Computer Congress",
         venueShort: "KCC",
         domestic: true,
         pages: "729–731",
@@ -147,10 +152,10 @@ export const publications: Publication[] = [
     },
     {
         title: "Using wake-up tasks for morning behavior change: development and usability study",
-        authors: ["Kyue Taek Oh", "Jisu Ko", "Jaemyung Shin", "Minsam Ko"],
+        authors: ["Kyue Taek Oh", "Jisu Ko", "Jaemyung Shin", "Minsam Ko†"],
         venue: "JMIR Formative Research 2022",
         venueShort: "JMIR FR",
-        metrics: ["ESCI Q2", "50th pct", "IF 2.4"],
+        kind: "journal",
         keywords: ["Behavioral Sensing", "Digital Wellness"],
         year: 2022,
         projectUrl: "https://formative.jmir.org/2022/9/E39497",
@@ -160,10 +165,10 @@ export const publications: Publication[] = [
     },
     {
         title: "A Review of Deep Learning Applications for Railway Safety",
-        authors: ["Kyue Taek Oh", "Mintaek Yoo", "Nayoung Jin", "Jisu Ko", "Jeonguk Seo", "Hyojin Joo", "Minsam Ko"],
+        authors: ["Kyue Taek Oh", "Mintaek Yoo", "Nayoung Jin", "Jisu Ko", "Jeonguk Seo", "Hyojin Joo", "Minsam Ko†"],
         venue: "Applied Sciences 2022",
         venueShort: "Appl. Sci.",
-        metrics: ["SCIE Q2", "IF 2.9"],
+        kind: "journal",
         keywords: ["Pose & Motion Analysis"],
         year: 2022,
         projectUrl: "https://www.mdpi.com/2076-3417/12/20/10572",
@@ -173,8 +178,8 @@ export const publications: Publication[] = [
     {
         title: "합성곱 신경망 기반 유튜브 동영상 섬네일 스타일 분석",
         titleEn: "Analyzing Thumbnail Styles of YouTube Videos via Convolutional Neural Network",
-        authors: ["김진아", "고지수", "이윤지", "임주연", "고민삼"],
-        venue: "한국HCI학회 학술대회",
+        authors: ["Jina Kim", "Jisu Ko", "Yoonji Lee", "Juyeon Lim", "Minsam Ko†"],
+        venue: "HCI Korea",
         venueShort: "HCI Korea",
         domestic: true,
         pages: "283–287",

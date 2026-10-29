@@ -5,16 +5,24 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { projectsVisible, slugForProject } from "../data/systems";
 import { publications } from "../data/publications";
+import { DemoFigure } from "./DemoFigure";
 
 /** The home row is the international record; Korean venues stay on the full
- *  list, under their own tab. */
-const papers = publications.filter((pub) => !pub.domestic);
+ *  list, under their own tab. Criticmate is pulled ahead of the MVA paper
+ *  here only — the full list keeps the authored order. */
+const papers = (() => {
+    const list = publications.filter((pub) => !pub.domestic);
+    const from = list.findIndex((pub) => pub.project === "Criticmate");
+    const to = list.findIndex((pub) => pub.venueShort === "MVA");
+    if (from > to && to >= 0) list.splice(to, 0, ...list.splice(from, 1));
+    return list;
+})();
 
 /**
  * Every paper on the home page, as the same figure-venue-title cards the
- * selected three used to be, in a row that steps a page at a time with the
+ * selected three used to be, in a row that steps a card at a time with the
  * arrows (or scrolls and snaps under a finger). Order is the authored order
- * in `publications.ts`, newest first.
+ * in `publications.ts`, newest first, but for the one move above.
  *
  * Above the row runs a fixed timeline: each year sits on it where its first
  * card falls in the row, and a short bar on the line marks the stretch in
@@ -78,10 +86,14 @@ export function PubCarousel() {
         return () => window.removeEventListener("resize", sync);
     }, [sync]);
 
+    // one card at a time: the pitch is a card and the gap after it, read off
+    // where the first two cards sit
     const step = (dir: 1 | -1) => {
         const track = trackRef.current;
-        if (!track) return;
-        track.scrollBy({ left: dir * track.clientWidth, behavior: "smooth" });
+        const [a, b] = slotRefs.current;
+        if (!track || !a) return;
+        const pitch = b ? b.offsetLeft - a.offsetLeft : a.offsetWidth;
+        track.scrollBy({ left: dir * pitch, behavior: "smooth" });
     };
 
     return (
@@ -160,7 +172,10 @@ export function PubCarousel() {
                                     className="system"
                                     href={slug ? `/projects/${slug}` : "/publications"}
                                 >
-                                    <div className={`system-fig${img ? "" : " pending"}`}>
+                                    <DemoFigure
+                                        className={`system-fig${img ? "" : " pending"}`}
+                                        demo={img && pub.demoUrl}
+                                    >
                                         {img ? (
                                             <Image
                                                 src={img}
@@ -170,7 +185,7 @@ export function PubCarousel() {
                                         ) : (
                                             <span>Figure to come</span>
                                         )}
-                                    </div>
+                                    </DemoFigure>
 
                                     <span className="venue">{pub.venueShort ?? pub.venue} · {pub.year}</span>
 

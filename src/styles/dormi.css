@@ -1,0 +1,1021 @@
+/* ===========================================================
+   Card layer — laid over site.css, which still carries every
+   component's structure. This file only changes how things sit
+   and what they are made of.
+
+   Set the way a product page is: a pale cool-grey ground with
+   white cards on it, one typeface (the system's — SF Pro on
+   Apple devices), and hierarchy carried by size, weight and
+   grey alone, and the larger the type the lighter it is set:
+   medium weight at most, tightly tracked, with room around it.
+   The long statement is two-tone, the point in ink and the
+   rest in grey. Each card opens with a short eyebrow. Anything you can
+   press that is not a card is accent-coloured text with a
+   chevron or an arrow.
+
+   Nothing is boxed twice — inside a card, figures sit on the
+   ground colour and text sits on the card.
+   =========================================================== */
+
+:root {
+  --ground: #f5f5f7;
+  --ground-2: #e8e8ed;
+  --card-bg: #ffffff;
+  --ink: #1d1d1f;
+  --ink-2: #6e6e73;
+  --ink-3: #86868b;
+  --rule: #d2d2d7;
+  --rule-soft: #e8e8ed;
+
+  /* one accent, an indigo, for links and the one switch */
+  --accent: #5e5ce6;
+  --accent-2: #7d7aff;
+  --accent-soft: #c9c8f7;
+  --accent-tint: #efeffd;
+
+  --paper: var(--ground);
+  --paper-2: var(--ground-2);
+  --bg: var(--ground);
+  --bg-2: var(--ground-2);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    "Inter", "Helvetica Neue", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --font-serif: var(--font-sans);
+  /* figures line up through tabular numerals, not a second face */
+  --font-mono: var(--font-sans);
+
+  --measure: 1080px;
+  --pad: 32px;
+  --gutter: 12px;
+  --r: 22px;
+  --r-in: 14px;
+  --header-h: 52px;
+  --rail: 120px;
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+html,
+body {
+  background: var(--ground);
+}
+
+/* a faint wash of light at the top of the page — lavender from the right,
+   peach from the left — that fades into the ground before the first card
+   ends. It does not move. */
+body {
+  background:
+    radial-gradient(900px 520px at 88% -8%, rgba(125, 122, 255, 0.13), transparent 62%),
+    radial-gradient(760px 480px at 6% -4%, rgba(255, 176, 140, 0.12), transparent 60%),
+    var(--ground);
+  background-repeat: no-repeat;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.016em;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* lines run as long as their box allows: no balancing or "pretty" passes
+   that pull words down early to even out the rag */
+.lede,
+.lede p,
+.home-hero h1,
+.home-hero .standing,
+.system h3,
+.pub-row h3,
+.note {
+  text-wrap: wrap;
+}
+
+::selection {
+  background: var(--accent-tint);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.page {
+  padding-bottom: 12px;
+}
+
+/* ── Card ───────────────────────────────────────────────── */
+
+.card {
+  position: relative;
+  min-width: 0;
+  padding: 44px;
+  border-radius: var(--r);
+  background: var(--card-bg);
+}
+
+/* the eyebrow every card opens with: short, semibold, a step darker than
+   the grey around it, led by a small dot in the accent */
+.card-label,
+.home .sec-head h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  color: var(--ink-2);
+}
+
+.card-label::before,
+.home .sec-head h2::before {
+  content: "";
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+
+/* a thin translucent bar: the name on the left, the pages and profiles
+   on the right, all at one small size */
+.site-header {
+  padding: 0 var(--pad);
+  background: rgba(245, 245, 247, 0.6);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.site-header-inner {
+  max-width: var(--measure);
+  height: var(--header-h);
+  padding: 0;
+}
+
+.site-name {
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+  transition: opacity 0.2s ease;
+}
+
+.site-name:hover {
+  color: var(--ink);
+  opacity: 0.6;
+}
+
+.site-nav {
+  gap: 28px;
+  font-size: 12.5px;
+  letter-spacing: -0.01em;
+}
+
+.site-nav > a,
+.site-profiles a {
+  color: var(--ink);
+  opacity: 0.72;
+  transition: opacity 0.2s ease;
+}
+
+.site-nav > a:hover,
+.site-profiles a:hover {
+  color: var(--ink);
+  opacity: 1;
+}
+
+.site-nav > a.active {
+  color: var(--ink);
+  opacity: 1;
+}
+
+.site-nav > a.active::after {
+  display: none;
+}
+
+.site-profiles {
+  gap: 24px;
+  padding-left: 0;
+  border-left: none;
+}
+
+.site-profiles a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.site-profiles .out {
+  font-size: 0.9em;
+}
+
+/* ── Home: the bento ────────────────────────────────────── */
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gutter);
+  padding: 16px 0 0;
+}
+
+/* the portrait and the greeting share the top row, the research statement
+   runs the full width under them; a 24-column grid so the portrait can take
+   a slimmer share than a quarter */
+.home-hero {
+  display: grid;
+  grid-template-columns: repeat(24, minmax(0, 1fr));
+  grid-template-rows: auto auto;
+  align-items: stretch;
+  gap: var(--gutter);
+  padding: 0;
+}
+
+/* the portrait as a narrow upright card ahead of the greeting, close to
+   the photo's own proportions */
+.hero-photo {
+  grid-column: 1 / 6;
+  grid-row: 1;
+  aspect-ratio: auto;
+  min-height: 300px;
+  padding: 0;
+  overflow: hidden;
+  background: var(--ground-2);
+}
+
+.hero-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 22%;
+}
+
+.hero-text {
+  grid-column: 6 / 25;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-head {
+  margin-top: 14px;
+}
+
+/* the greeting: large, semibold, tightly tracked */
+.home-hero h1 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: clamp(36px, 4vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+/* the name in hangul, beside the English one in grey */
+.home-hero h1 .ko {
+  margin-left: 12px;
+  font-weight: 400;
+  font-size: 0.36em;
+  letter-spacing: -0.01em;
+  vertical-align: baseline;
+  color: var(--ink-3);
+}
+
+.home-hero .standing {
+  max-width: none;
+  margin-top: 18px;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.55;
+  letter-spacing: -0.016em;
+  color: var(--ink-2);
+  text-wrap: wrap;
+}
+
+/* names are read whole: a lab or a person never breaks at its hyphen or
+   across a line */
+.home-hero .standing a {
+  white-space: nowrap;
+  color: var(--ink);
+  border-bottom: none;
+}
+
+.home-hero .standing a:hover {
+  color: var(--accent);
+  border-color: transparent;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* the address and the profiles as a quiet footer to the card: a hairline
+   above, plain words in grey under it. Pointed at, a word comes up to full
+   ink, a thin line draws in under it from the left and the leaving arrow
+   steps out toward where it leads */
+.hero-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule-soft);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.016em;
+  animation: none;
+}
+
+.home-hero .standing {
+  margin-bottom: 28px;
+}
+
+.hero-contact a {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 0 0 3px;
+  border-bottom: none;
+  color: var(--ink-2);
+  transition: color 0.25s ease;
+}
+
+.hero-contact a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.hero-contact a:hover {
+  color: var(--ink);
+}
+
+.hero-contact a:hover::after {
+  transform: scaleX(1);
+}
+
+.hero-contact .out {
+  font-size: 0.8em;
+  color: var(--ink-3);
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.25s ease;
+}
+
+.hero-contact a:hover .out {
+  color: var(--accent);
+  transform: translate(1.5px, -1.5px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-contact a::after,
+  .hero-contact .out {
+    transition: none;
+  }
+}
+
+/* the research: one two-tone statement — its subject in ink, the rest in
+   grey — and the method under it at reading size, one column */
+.hero-focus {
+  grid-column: 1 / 25;
+  grid-row: 2;
+}
+
+.home-hero .lede {
+  max-width: none;
+  margin-top: 18px;
+}
+
+.hero-focus .lede p:first-child {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  max-width: none;
+  font-size: clamp(22px, 2.3vw, 28px);
+  line-height: 1.24;
+  letter-spacing: -0.022em;
+  color: var(--ink-3);
+  text-wrap: wrap;
+}
+
+/* the subject in ink; its last word holds on to the dash after it, so no
+   line ever starts with one */
+.hero-focus .lede p:first-child b {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.hero-focus .lede .nobr {
+  white-space: nowrap;
+}
+
+.hero-focus .lede p + p {
+  max-width: none;
+  margin: 20px 0 0;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  letter-spacing: -0.012em;
+  text-wrap: wrap;
+  color: var(--ink-2);
+}
+
+/* the cards arrive one after another, once, on load; nothing inside them
+   moves on its own */
+.home-hero > .card {
+  animation: hero-rise 0.8s var(--ease) both;
+}
+
+.hero-head,
+.home-hero .standing,
+.home-hero .lede p {
+  animation: none;
+}
+
+.home-hero > .hero-text { animation-delay: 0.05s; }
+.home-hero > .hero-photo { animation-delay: 0.1s; }
+.home-hero > .hero-focus { animation-delay: 0.15s; }
+
+/* ── Home: sections ─────────────────────────────────────── */
+
+.home-sec,
+.home-work,
+.home-sec:last-child {
+  padding: 44px;
+}
+
+.home .sec-head {
+  align-items: baseline;
+  margin-bottom: 24px;
+}
+
+.home-work .pub-carousel,
+.home-sec .notes {
+  margin-top: 0;
+}
+
+/* a section's one action: accent text with a chevron, no box */
+.sec-action {
+  height: auto;
+  gap: 2px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  letter-spacing: -0.012em;
+  color: var(--accent);
+}
+
+.sec-action:hover {
+  border: none;
+  background: transparent;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.sec-action .arrow {
+  display: none;
+}
+
+.sec-action:not(.toggle)::after {
+  content: "›";
+  margin-left: 3px;
+  font-size: 1.15em;
+  line-height: 1;
+}
+
+.sec-action.toggle .chev {
+  margin-left: 6px;
+}
+
+.toggle:hover {
+  color: var(--accent);
+}
+
+/* news: the date small and grey, the item at reading size */
+.note {
+  grid-template-columns: 96px 1fr;
+  gap: 28px;
+  padding: 8px 0;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.notes > .note {
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+}
+
+.notes-more.open .notes-more-inner {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.note .when {
+  padding-top: 0.3em;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: -0.005em;
+  color: var(--ink-3);
+}
+
+/* ── Publication carousel ───────────────────────────────── */
+
+.pub-carousel {
+  --gap: 20px;
+}
+
+.pub-timeline {
+  height: 24px;
+  margin-bottom: 22px;
+  border-bottom-color: var(--rule-soft);
+}
+
+.pub-timeline-bar {
+  bottom: -1px;
+  height: 1px;
+  border-radius: 2px;
+  background: var(--ink);
+}
+
+.pub-timeline-year {
+  bottom: 8px;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: -0.005em;
+}
+
+.pub-timeline-year:hover,
+.pub-timeline-year.on {
+  color: var(--ink);
+}
+
+/* one figure on the ground colour, the text straight on the card under it */
+.system {
+  height: 100%;
+}
+
+.system-fig {
+  margin-bottom: 16px;
+  padding: 18px;
+  border-radius: var(--r-in);
+  background: var(--ground);
+  box-shadow: none;
+}
+
+.system:hover .system-fig {
+  box-shadow: none;
+}
+
+.system-fig img {
+  mix-blend-mode: multiply;
+}
+
+.system:hover .system-fig img {
+  transform: scale(1.03);
+}
+
+.system .venue {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: -0.005em;
+  color: var(--ink-3);
+}
+
+.system h3 {
+  margin-top: 6px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.33;
+  letter-spacing: -0.016em;
+}
+
+.system:hover h3 {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* round grey buttons on the row's edges, frosted over whatever is under */
+.pub-arrow {
+  width: 36px;
+  height: 36px;
+  margin-top: calc(
+    (100% - (var(--cols) - 1) * var(--gap)) / var(--cols) * 10 / 32 - 18px
+  );
+  padding: 0 0 2px;
+  border: none;
+  background: rgba(210, 210, 215, 0.64);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 20px;
+  color: var(--ink-2);
+  box-shadow: none;
+  transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.pub-arrow.prev {
+  left: -18px;
+}
+
+.pub-arrow.next {
+  right: -18px;
+}
+
+.pub-arrow:hover {
+  background: rgba(210, 210, 215, 0.95);
+  color: var(--ink);
+}
+
+/* ── Publications page ──────────────────────────────────── */
+
+/* the cuts as a segmented control, the first-author switch at the far edge */
+.page-head {
+  justify-content: flex-start;
+  padding: 0;
+  margin: 20px 0 20px;
+  border-bottom: none;
+}
+
+.page-head .pub-tabs {
+  flex: 1;
+  padding-bottom: 0;
+}
+
+.pub-tabs {
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2px;
+}
+
+.pub-tab {
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.016em;
+  color: var(--ink-2);
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pub-tab:hover {
+  background: transparent;
+  color: var(--ink);
+}
+
+.pub-tab.active {
+  background: var(--card-bg);
+  color: var(--ink);
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 3px 8px rgba(0, 0, 0, 0.04);
+}
+
+.pub-tab .ct,
+.pub-tab.active .ct {
+  margin-left: 5px;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 12px;
+  vertical-align: 0;
+  color: var(--ink-3);
+}
+
+.pub-switch {
+  margin-left: auto;
+  padding: 8px 2px;
+  border-left: none;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.016em;
+  color: var(--ink-2);
+}
+
+.pub-switch:hover {
+  color: var(--ink);
+}
+
+/* the switch drawn the way the system draws one */
+.pub-switch .track {
+  width: 38px;
+  height: 22px;
+  border-radius: 11px;
+  background: var(--ground-2);
+}
+
+.pub-switch .knob {
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.pub-switch.on {
+  color: var(--ink);
+}
+
+.pub-switch.on .track {
+  background: var(--accent);
+}
+
+.pub-switch.on .knob {
+  transform: translateX(16px);
+}
+
+/* the year in the headline voice on the rail, every paper a card beside it */
+.year-row + .year-row {
+  margin-top: 36px;
+}
+
+.year {
+  top: calc(var(--header-h) + 20px);
+  padding-top: 26px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.pub-list {
+  gap: var(--gutter);
+}
+
+.pub-row {
+  padding: 30px 32px;
+  border-bottom: none;
+  border-radius: var(--r);
+  background: var(--card-bg);
+  transition: box-shadow 0.3s ease;
+}
+
+.pub-row:hover {
+  padding-left: 32px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.pub-row.with-thumb {
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 40px;
+}
+
+.pub-head {
+  gap: 10px;
+  margin-bottom: 8px;
+  font-family: var(--font-sans);
+}
+
+/* the venue as an eyebrow, in the accent */
+.venue-pill {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: -0.005em;
+  color: var(--accent);
+}
+
+.venue-pill.pending {
+  background: none;
+  color: var(--ink-3);
+}
+
+/* a journal's name in italic, as a citation sets it; conferences stay upright */
+.pub-row .journal.is-journal {
+  font-style: italic;
+}
+
+.pub-row h3 {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.32;
+  letter-spacing: -0.02em;
+}
+
+.pub-row h3 em {
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.pub-row .authors {
+  margin-top: 8px;
+  font-size: 13.5px;
+  letter-spacing: -0.012em;
+  color: var(--ink-2);
+}
+
+.pub-row .authors b {
+  font-weight: 500;
+  color: var(--ink);
+  border-bottom: none;
+  padding: 0;
+}
+
+.journal {
+  margin-top: 2px;
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: -0.012em;
+  color: var(--ink-3);
+}
+
+.pub-row.kr .journal {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: -0.012em;
+}
+
+.pub-row.kr .journal .yr {
+  color: var(--ink-2);
+}
+
+.pub-thumb {
+  max-width: 220px;
+  padding: 14px;
+  border-radius: var(--r-in);
+  background: var(--ground);
+  box-shadow: none;
+}
+
+.pub-thumb img {
+  mix-blend-mode: multiply;
+}
+
+.pub-thumb.pending {
+  background: var(--ground);
+  box-shadow: none;
+}
+
+/* the links as accent text, no boxes */
+.pub-row .links {
+  gap: 22px;
+  margin-top: 16px;
+  font-size: 13.5px;
+  letter-spacing: -0.012em;
+}
+
+.pub-row .links a {
+  padding: 0;
+  border-bottom: none;
+  font-weight: 400;
+  color: var(--accent);
+}
+
+.pub-row .links a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* ── Footer ─────────────────────────────────────────────── */
+
+/* one centred line of small print on the ground, nothing more */
+.site-footer {
+  width: auto;
+  max-width: calc(var(--measure) + 2 * var(--pad));
+  margin: 0 auto;
+  padding: 36px var(--pad) 40px;
+  border-top: none;
+  background: none;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--ink-3);
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+
+@media (max-width: 760px) {
+  :root {
+    --pad: 16px;
+    --r: 20px;
+    --gutter: 10px;
+    --header-h: 48px;
+  }
+
+  .card,
+  .home-sec,
+  .home-work,
+  .home-sec:last-child {
+    padding: 28px 24px;
+  }
+
+  .home-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-text,
+  .hero-photo,
+  .hero-focus {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .hero-text {
+    min-height: 0;
+  }
+
+  /* a landscape cut on a phone, so the face does not fill the screen */
+  .hero-photo {
+    min-height: 0;
+    padding: 0;
+    aspect-ratio: 4 / 3;
+  }
+
+  .hero-focus .lede p:first-child {
+    font-size: 22px;
+    line-height: 1.26;
+    text-wrap: wrap;
+  }
+
+  .site-nav {
+    gap: 20px;
+  }
+
+  .site-profiles {
+    gap: 18px;
+  }
+
+  .note {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .pub-arrow.prev {
+    left: 6px;
+  }
+
+  .pub-arrow.next {
+    right: 6px;
+  }
+
+  .pub-row,
+  .pub-row:hover {
+    padding: 24px;
+  }
+
+  .pub-row.with-thumb {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .pub-thumb {
+    justify-self: stretch;
+    max-width: none;
+  }
+
+  .year {
+    font-size: 22px;
+  }
+
+  .page-head {
+    flex-direction: row;
+    margin-top: 12px;
+  }
+
+  .page-head .pub-tabs {
+    flex-wrap: wrap;
+    margin-left: 0;
+  }
+
+  .site-footer {
+    padding: 28px var(--pad) 32px;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-profiles {
+    display: none;
+  }
+
+  .pub-switch {
+    margin-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-hero > .card {
+    animation: none;
+  }
+}

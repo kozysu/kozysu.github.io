@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { Publication } from "../types/publication";
+import { DemoFigure } from "./DemoFigure";
 
 /** Short label for the venue mark, e.g. "CHI 2026" → "CHI". */
 function venueTag(venue: string, venueShort?: string) {
@@ -116,12 +117,6 @@ export function PubList({ items, thumbs = false }: PubListProps) {
                                                 >
                                                     {tag}
                                                 </span>
-
-                                                {pub.metrics && (
-                                                    <span className="venue-metrics">
-                                                        {pub.metrics.join(" · ")}
-                                                    </span>
-                                                )}
                                             </div>
 
                                             <h3
@@ -167,7 +162,15 @@ export function PubList({ items, thumbs = false }: PubListProps) {
                                             ) : (
                                                 pub.venue.toLowerCase() !==
                                                     tag.toLowerCase() && (
-                                                    <p className="journal">{pub.venue}</p>
+                                                    <p
+                                                        className={`journal${
+                                                            pub.kind === "journal"
+                                                                ? " is-journal"
+                                                                : ""
+                                                        }`}
+                                                    >
+                                                        {pub.venue}
+                                                    </p>
                                                 )
                                             )}
 
@@ -201,13 +204,14 @@ export function PubList({ items, thumbs = false }: PubListProps) {
                                         </div>
 
                                         {withThumb && (
-                                            <div
+                                            <DemoFigure
                                                 className={`pub-thumb${
                                                     src ? "" : " pending"
                                                 }`}
+                                                demo={src && pub.demoUrl}
                                             >
                                                 {src && <img src={src} alt="" />}
-                                            </div>
+                                            </DemoFigure>
                                         )}
                                     </article>
                                 );
