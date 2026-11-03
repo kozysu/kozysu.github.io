@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { ImageIcon } from "lucide-react";
 import { projectsVisible, slugForProject } from "../data/systems";
 import { publications } from "../data/publications";
 import { DemoFigure } from "./DemoFigure";
@@ -183,7 +184,7 @@ export function PubCarousel() {
                                                 sizes="(max-width: 900px) 100vw, 33vw"
                                             />
                                         ) : (
-                                            <span>Figure to come</span>
+                                            <ImageIcon size={28} strokeWidth={1.25} aria-hidden />
                                         )}
                                     </DemoFigure>
 

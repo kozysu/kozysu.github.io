@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { ImageIcon } from "lucide-react";
 import { Publication } from "../types/publication";
 import { DemoFigure } from "./DemoFigure";
 
@@ -210,7 +211,11 @@ export function PubList({ items, thumbs = false }: PubListProps) {
                                                 }`}
                                                 demo={src && pub.demoUrl}
                                             >
-                                                {src && <img src={src} alt="" />}
+                                                {src ? (
+                                                    <img src={src} alt="" />
+                                                ) : (
+                                                    <ImageIcon size={28} strokeWidth={1.25} aria-hidden />
+                                                )}
                                             </DemoFigure>
                                         )}
                                     </article>

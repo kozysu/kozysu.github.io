@@ -26,7 +26,7 @@ export default function RootLayout({
                     <main className="page">{children}</main>
 
                     <footer className="site-footer">
-                        <span>© {new Date().getFullYear()} · JISU KO · ALL RIGHTS RESERVED</span>
+                        <span>© {new Date().getFullYear()} · Jisu Ko · All rights reserved</span>
                     </footer>
                 </div>
             </body>
