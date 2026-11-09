@@ -1,6 +1,5 @@
 /* One face. The system's own — SF Pro on Apple devices — for everything,
    with Inter standing in where SF is not installed. Hierarchy comes from
-   size, weight and grey, never from a second family. JetBrains Mono stays
-   loaded for anything in site.css that still names it; Noto Sans KR for
+   size, weight and grey, never from a second family. Noto Sans KR for
    hangul off Apple devices. */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
