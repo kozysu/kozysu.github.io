@@ -1,8 +1,8 @@
 import { Publication, Patent, SoftwareRegistration } from "../types/publication";
-import img22MorningBehavior from "../assets/22_mbc_line.webp";
+import img22MorningBehavior from "../assets/22_mbc.webp";
 import img24Colorbo from "../assets/24_colorbo.webp";
 import img24CompEmo from "../assets/24_compemo.png";
-import img24MorningEmo from "../assets/24_mwi_line.webp";
+import img24MorningEmo from "../assets/24_mwi.webp";
 import img25Prioritization from "../assets/25_prioritization.png";
 import img26Criticmate from "../assets/26_criticmate.webp";
 import demo26Criticmate from "../assets/26_criticmate_demo.webp";
