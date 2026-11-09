@@ -29,8 +29,8 @@ export const mapCells: MapCell[] = [
         current: true,
         items: [
             { name: "Criticmate", note: "staged UI critique", venue: "CHI ’26" },
-            { name: "Postalk", note: "poster and talk authoring", venue: "under review" },
-            { name: "PRISM", note: "career decisions", venue: "under review" },
+            // { name: "Postalk", note: "poster and talk authoring", venue: "under review" },
+            // { name: "PRISM", note: "career decisions", venue: "under review" },
         ],
     },
     {

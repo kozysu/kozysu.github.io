@@ -3,6 +3,25 @@
 import { useEffect, useRef, useState } from "react";
 import { newsData, NewsItem } from "../data/news";
 
+/** Links only `linkText` inside the line, or the whole line if none is given. */
+function NoteText({ item }: { item: NewsItem }) {
+    if (!item.link) return <>{item.content}</>;
+    const anchor = (text: string) => (
+        <a href={item.link} target="_blank" rel="noopener noreferrer">
+            {text}
+        </a>
+    );
+    const at = item.linkText ? item.content.indexOf(item.linkText) : -1;
+    if (at < 0) return anchor(item.content);
+    return (
+        <>
+            {item.content.slice(0, at)}
+            {anchor(item.linkText!)}
+            {item.content.slice(at + item.linkText!.length)}
+        </>
+    );
+}
+
 function Note({ item, i }: { item: NewsItem; i?: number }) {
     return (
         <div
@@ -11,13 +30,7 @@ function Note({ item, i }: { item: NewsItem; i?: number }) {
         >
             <span className="when">{item.date}</span>
             <span>
-                {item.link ? (
-                    <a href={item.link} target="_blank" rel="noopener noreferrer">
-                        {item.content}
-                    </a>
-                ) : (
-                    item.content
-                )}
+                <NoteText item={item} />
             </span>
         </div>
     );

@@ -2,16 +2,20 @@ export interface NewsItem {
     date: string;
     content: string;
     link?: string;
+    /** the words in `content` that carry the link; the rest stays plain text */
+    linkText?: string;
 }
 
 export const newsData: NewsItem[] = [
     {
-        date: "Oct 2026",
-        content: "Served as TA for 'Agentic AI' workshop at Dongsan High School 🧑‍🏫",
+        date: "Nov 2026",
+        content: "Two of my CHI 2027 reviews received Special Recognition for Outstanding Reviews! 🏅",
     },
     {
         date: "Sep 2026",
-        content: "Our paper on masked pose embedding has been accepted to Machine Vision and Applications 🎉",
+        content: "Our Masked Pose Embedding paper has been accepted in Machine Vision and Applications! 🎉",
+        linkText: "Masked Pose Embedding",
+        link: "https://link.springer.com/article/10.1007/s00138-026-01909-7",
     },
     {
         date: "Apr 2026",
@@ -19,8 +23,9 @@ export const newsData: NewsItem[] = [
     },
     {
         date: "Jan 2026",
-        content: "One paper has been conditionally accepted to CHI 2026! Best birthday gift ever 🎉",
-        // link: "#"
+        content: "Our Criticmate paper has been conditionally accepted to CHI 2026! Best birthday gift ever 🎉",
+        linkText: "Criticmate",
+        link: "https://doi.org/10.1145/3772318.3790929",
     },
     {
         date: "Sep 2025",
@@ -31,16 +36,8 @@ export const newsData: NewsItem[] = [
         content: "Attended CHI 2025 in Yokohama 🇯🇵",
     },
     {
-        date: "Aug 2024",
-        content: "Served as TA for 'LangChain-based Chatbot Application Development' workshop at Dongsan High School 🧑‍🏫",
-    },
-    {
-        date: "Jul 2024",
-        content: "Exhibited Colorbo at 'Digital Planet' exhibition, Busan National Science Museum 🎨",
-    },
-    {
         date: "Mar 2024",
-        content: "Started Ph.D. at Human-AI Interaction Lab 🧑‍💻",
+        content: "Started my Ph.D. at the Human-AI Interaction Lab 🧑‍💻",
     },
     // {
     //     date: "Dec 2023",

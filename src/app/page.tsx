@@ -77,9 +77,9 @@ export default function HomePage() {
                         </p>
                         <p>
                             I design and evaluate interactive AI systems that make reasoning,
-                            intentions, and different perspectives easier to examine and revise. My
+                            intentions, and alternative viewpoints easier to examine and revise. My
                             broader goal is to explore how AI can support human agency, rather than
-                            simply provide answers.
+                            simply providing answers.
                         </p>
                     </div>
                 </div>

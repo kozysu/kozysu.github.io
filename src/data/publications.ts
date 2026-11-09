@@ -6,9 +6,9 @@ import img24MorningEmo from "../assets/24_mwi_line.webp";
 import img25Prioritization from "../assets/25_prioritization.png";
 import img26Criticmate from "../assets/26_criticmate.webp";
 import demo26Criticmate from "../assets/26_criticmate_demo.webp";
-import img26PosTalk from "../assets/26_postalk.webp";
-import img26PRISM from "../assets/26_prism.png";
-import img26MPE from "../assets/26_mpe_line.webp";
+// import img26PosTalk from "../assets/26_postalk.webp";
+// import img26PRISM from "../assets/26_prism.png";
+import img26MPE from "../assets/26_mpe.webp";
 import demo26MPE from "../assets/26_pose_demo.webp";
 
 /**
@@ -31,32 +31,35 @@ import demo26MPE from "../assets/26_pose_demo.webp";
  *   KIISE / HCI Korea  domestic proceedings — no index or impact factor
  */
 export const publications: Publication[] = [
-    {
-        title: "\"On the Wall or in the Talk?\": A Cross-Channel Takeaway Loop for Academic Poster Authoring",
-        authors: ["Jisu Ko", "Seyoung Park", "Minsam Ko†"],
-        venue: "Under review",
-        venueShort: "Under review",
-        project: "Postalk",
-        keywords: ["Human-AI Interaction", "Academic Communication"],
-        year: 2026,
-        projectUrl: "#",
-        pdfUrl: "#",
-        imageUrl: img26PosTalk,
-        isSelected: true
-    },
-    {
-        title: "Taking Sides with Yourself: How Opposing AI Perspectives Shape Attention in Career Decision-Making",
-        authors: ["Gijun Jang*","Jisu Ko*", "Jinyoung Choi*", "Minsam Ko†"],
-        venue: "Under review",
-        venueShort: "Under review",
-        project: "PRISM",
-        keywords: ["Human-AI Interaction", "Judgment & Decision Support"],
-        year: 2026,
-        projectUrl: "#",
-        pdfUrl: "#",
-        imageUrl: img26PRISM,
-        isSelected: true
-    },
+    // Postalk and PRISM: rejected, to be resubmitted (2027). Uncomment
+    // both when they are under review again, along with their entries
+    // in researchMap.ts and the imports above.
+    // {
+    //     title: "\"On the Wall or in the Talk?\": A Cross-Channel Takeaway Loop for Academic Poster Authoring",
+    //     authors: ["Jisu Ko", "Seyoung Park", "Minsam Ko†"],
+    //     venue: "Under review",
+    //     venueShort: "Under review",
+    //     project: "Postalk",
+    //     keywords: ["Human-AI Interaction", "Academic Communication"],
+    //     year: 2026,
+    //     projectUrl: "#",
+    //     pdfUrl: "#",
+    //     imageUrl: img26PosTalk,
+    //     isSelected: true
+    // },
+    // {
+    //     title: "Taking Sides with Yourself: How Opposing AI Perspectives Shape Attention in Career Decision-Making",
+    //     authors: ["Gijun Jang*","Jisu Ko*", "Jinyoung Choi*", "Minsam Ko†"],
+    //     venue: "Under review",
+    //     venueShort: "Under review",
+    //     project: "PRISM",
+    //     keywords: ["Human-AI Interaction", "Judgment & Decision Support"],
+    //     year: 2026,
+    //     projectUrl: "#",
+    //     pdfUrl: "#",
+    //     imageUrl: img26PRISM,
+    //     isSelected: true
+    // },
     {
         title: "Masked Pose Embedding for View and Occlusion Invariance in 2D Pose Analysis",
         authors: ["Jisu Ko", "Jeonguk Seo†", "Minsam Ko†"],
