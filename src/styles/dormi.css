@@ -23,7 +23,7 @@
   --card-bg: #ffffff;
   --ink: #1d1d1f;
   --ink-2: #6e6e73;
-  --ink-3: #86868b;
+  --ink-3: #707075; /* 4.5:1 on the ground, so 12px labels stay readable */
   --rule: #d2d2d7;
   --rule-soft: #e8e8ed;
 
@@ -145,9 +145,9 @@ body {
    on the right, all at one small size */
 .site-header {
   padding: 0 var(--pad);
-  background: rgba(245, 245, 247, 0.6);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  /* solid, not frosted: the build keeps only the -webkit- blur, so Chrome and
+     Firefox showed the page straight through a translucent header */
+  background: var(--ground);
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
